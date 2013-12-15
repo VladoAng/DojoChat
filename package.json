@@ -1,0 +1,20 @@
+{
+  "name": "Chat",
+  "version": "0.0.1",
+  "description": "Neznam",
+  "main": "server.js",
+  "dependencies": {
+  	"socket.io": "*",
+  	"express": "*",
+  	"jade": "*"
+  	  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "VladoAng",
+  "license": "BSD-2-Clause",
+  "engines": {
+        "node": "0.10.x"
+    }
+}
