@@ -1,6 +1,15 @@
 var socket = io.connect();
 function addMessage(msg, pseudo) {
-        $("#chatEntries").append('<div class="message"><p>' + pseudo + ' : ' + msg + '</p></div>');
+		var p = '<div class="message"><p><span style="font-weight:bold; ';
+		if(pseudo == "Me") {
+		  p += 'color: blue;">';
+		}
+		else {
+		  p += 'color: red;">';
+		}
+		p += pseudo + '</span> : ' + msg + '</p></div>';
+		$("#chatEntries").append(p);
+		$('#chatEntries').scrollTop($('#chatEntries').prop("scrollHeight"));
 }
 function sentMessage() {
         if ($('#messageInput').val() != "") 
@@ -17,13 +26,17 @@ function setPseudo() {
                 $('#chatControls').show();
                 $('#pseudoInput').hide();
                 $('#pseudoSet').hide();
+				$('#messageInput').focus();
         }
 }
 socket.on('message', function(data) {
         addMessage(data['message'], data['pseudo']);
 });
-$(function() {
-        $("#chatControls").hide();
-        $("#pseudoSet").click(function() {setPseudo()});
-        $("#submit").click(function() {sentMessage();});
-}); 
+$(document).keypress(function(e) {
+  if(e.which == 13) {
+	if($(document.activeElement)[0] == $("#messageInput")[0])
+	  sentMessage();
+	if($(document.activeElement)[0] == $("#pseudoInput")[0])
+	  setPseudo();
+  }
+});
