@@ -4,6 +4,9 @@ html, body {
     overflow: hidden;
     padding: 0;
 }
+div {
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
  
 #appLayout {
     height: 100%;
